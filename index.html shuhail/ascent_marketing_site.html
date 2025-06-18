@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCENT MARKETING</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f7;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(90deg, #007b5e, #00c896);
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header img {
+      height: 55px;
+      margin-right: 15px;
+    }
+    header h1 {
+      font-size: 1.8em;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    nav {
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    nav a {
+      text-decoration: none;
+      color: #008773;
+      font-weight: 600;
+      font-size: 1em;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #008773;
+      bottom: -4px;
+      left: 0;
+      transition: 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    .section {
+      display: none;
+      padding: 30px 20px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+    .product {
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      text-align: center;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+    }
+    .product img {
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .product h3 {
+      font-size: 1.1em;
+      margin: 10px 0 5px;
+    }
+    .product p {
+      font-weight: bold;
+      color: #007b5e;
+    }
+    .order-btn {
+      margin-top: 10px;
+      background: #00c896;
+      border: none;
+      padding: 8px 16px;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .order-btn:hover {
+      background: #007b5e;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #f7f7f7;
+      color: #555;
+      font-size: 0.9em;
+      margin-top: 30px;
+    }
+    .whatsapp-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .whatsapp-icon img {
+      width: 30px;
+    }
+  </style>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function orderNow(product, price) {
+      const qty = prompt("Enter quantity:", "1");
+      if (!qty || isNaN(qty) || qty < 1) return;
+      const total = price * qty;
+      const msg = `Order Details:%0AProduct: ${product}%0AQuantity: ${qty}%0ATotal Cost: Rs. ${total}`;
+      window.open(`https://wa.me/94768709926?text=${msg}`, '_blank');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="your-logo.JFIF" alt="Ascent Marketing Logo">
+    <h1>ASCENT MARKETING (Pvt) Ltd.</h1>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showSection('mobiles')">Mobiles</a>
+    <a href="#" onclick="showSection('accessories')">Accessories</a>
+    <a href="#" onclick="showSection('orders')">My Orders</a>
+    <a href="#" onclick="showSection('about')">About</a>
+  </nav>
+
+  <div id="mobiles" class="section active">
+    <h2>Mobiles</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="01.PNG" alt="Mobile 1">
+        <h3>ZTE Blade A35e</h3>
+        <p>Rs. 23000</p>
+        <button class="order-btn" onclick="orderNow('Samsung Galaxy A14', 58000)">Order Now</button>
+      </div>
+      <div class="product">
+        <img src="02.JPG" alt="Mobile 2">
+        <h3>iPhone 13</h3>
+        <p>Rs. 190000</p>
+        <button class="order-btn" onclick="orderNow('iPhone 13', 190000)">Order Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="accessories" class="section">
+    <h2>Mobile Accessories</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="04.JPG" alt="Charger">
+        <h3>Fast Charger</h3>
+        <p>Rs. 1200</p>
+        <button class="order-btn" onclick="orderNow('Fast Charger', 1200)">Order Now</button>
+      </div>
+      <div class="product">
+        <img src="HEADSET.JFIF" alt="Headset">
+        <h3>Bluetooth Headset</h3>
+        <p>Rs. 3500</p>
+        <button class="order-btn" onclick="orderNow('Bluetooth Headset', 3500)">Order Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="orders" class="section">
+    <h2>My Orders</h2>
+    <p style="text-align:center">No orders placed yet.</p>
+  </div>
+
+  <div id="about" class="section">
+    <h2 style="text-align:center; margin-bottom: 20px;">About Us</h2>
+    <div style="max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+      <p style="font-size: 1.1em; line-height: 1.6;">
+        We are your trusted partner in mobile and mobile accessories import. Our goal is to provide premium quality products and services to our valued customers.
+        <br><br>
+        📍 Location: Mawanella Bus Stand, 71500, Sri Lanka
+        <br>
+        🤝 We're proud to be your reliable customer partner.
+        <br><br>
+        Feel free to contact us on WhatsApp for product inquiries, custom orders, or any support!
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 ASCENT MARKETING. All rights reserved.
+  </footer>
+
+  <a href="https://wa.me/94768709926" target="_blank" class="whatsapp-icon">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="Chat on WhatsApp">
+  </a>
+</body>
+</html>
